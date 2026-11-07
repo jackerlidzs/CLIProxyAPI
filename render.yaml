@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: cliproxyapi
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    region: singapore
+    branch: main
+    autoDeploy: true
+    healthCheckPath: /
+    dockerCommand: sh -c "[ -f /data/config.yaml ] || cp /CLIProxyAPI/config.example.yaml /data/config.yaml; exec /CLIProxyAPI/CLIProxyAPI --config /data/config.yaml"
+    disk:
+      name: cliproxy-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: DEPLOY
+        value: cloud
+      - key: PORT
+        value: "8317"
+      - key: VERSION
+        value: render
