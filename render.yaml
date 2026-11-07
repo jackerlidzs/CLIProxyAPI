@@ -9,7 +9,7 @@ services:
     branch: main
     autoDeploy: true
     healthCheckPath: /
-        dockerCommand: /CLIProxyAPI/CLIProxyAPI --config /etc/secrets/config.yaml
+            dockerCommand: /CLIProxyAPI/CLIProxyAPI --config /data/config.yaml
     disk:
       name: cliproxy-data
       mountPath: /data
